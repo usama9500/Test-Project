@@ -47,112 +47,43 @@ Having this built-in error detection prevents issues from going unnoticed and ma
 
 ## **Areas for Improvement & Recommendations**  
 
-### **1. Missing API Request Examples in Key Sections**  
-Some pages describe API endpoints but don’t provide the corresponding request examples. This forces users to look elsewhere or guess at the request format.  
+### **1. Formatting Inconsistencies**  
+There are some formatting inconsistencies across the documentation that could affect readability.  
+
+#### **Example: Step Numbering in "Step 4" of Generate a Portal using the Async API** 
+In some sections, such as **Step 4 there is a bullet marked as "4," but the previous steps are not numbered. This inconsistency makes the structure unclear.  
+
+
+### **2. Lack of Introduction or Short Descriptions**  
+Many pages jump directly into technical details without a brief introduction or context. Users who are new to the process might struggle to understand the purpose of each section.  
 
 #### **Example: "Generate a Portal using the Sync API"**  
-The page mentions invoking the API but doesn’t show how to do it.  
+The page starts immediately with API instructions but does not explain when to use the Sync API versus the Async API.  Add a **short introductory paragraph** at the beginning of each page to explain what users will accomplish.  
 
-**Suggested Fix:** Add a clear API request example:  
-```bash
-curl -X POST "https://api.apimatic.io/v1/generate-portal" \
--H "Authorization: Bearer YOUR_API_KEY" \
--H "Content-Type: application/json" \
--d '{
-    "buildInput": {
-        "specs": ["openapi.json"],
-        "languageConfig": {
-            "http": {}
-        }
-    }
-}' --output portal.zip
-```  
-This makes implementation straightforward and reduces the chances of errors.  
+### **3. Inconsistent Use of Bullets and Numbering**  
+There is inconsistency in how information is formatted. Some sections use bullet points while others use numbered steps, even when describing similar workflows.  
 
----
+#### **Example: "Automate API Portal Generation using the Sync API"**  
+The page sometimes switches between bullet points and numbered lists, making it harder to follow.  
 
-### **2. Authentication Key Setup Needs More Clarity**  
-Several sections, including **"Prepare the Build Input,"** mention that an **authentication key is required** but don’t explain how to obtain it. Users unfamiliar with APIMatic may not know where to find it.  
+### **4. Inconsistent Labeling Colors**  
+The documentation uses **different colors for labels, warnings, and highlighted text** on different pages.  
 
-**Suggested Fix:**  
-- Add a short section explaining how to generate the API key in the APIMatic dashboard.  
-- Provide a direct link to an authentication guide.  
+In **"Backup Hosted Portal Feature"**, the label color differs from the color used in other documentation pages. This inconsistency can be visually confusing.  
 
----
 
-### **3. More Details on Hosting API Portals**  
-Pages like **"Generate a Portal using the Sync API"** mention hosting the generated portal but don’t provide instructions. Simply stating that users should "extract and host it on any web server" is too vague.  
+### **5. More Details on Build Input**  
+The sample JSON file is helpful but lacks explanations of key properties like "generatePortal", "languageConfig", and "apiSpecs".
+ Provide a brief explanation of what each key does in a commented JSON block, e.g.
 
-**Suggested Fix:**  
-Expand the hosting section with specific deployment options, such as:  
-- **Previewing locally**  
-  ```bash
-  npx http-server ./portal
-  ```
-- **Deploying to GitHub Pages**  
-  ```yaml
-  - name: Deploy to GitHub Pages
-    uses: peaceiris/actions-gh-pages@v3
-    with:
-      publish_dir: ./static-portal
-      github_token: ${{ secrets.GITHUB_TOKEN }}
-  ```
 
-This would save time and effort for users unfamiliar with deployment options.  
+### **6. Explain What’s Inside the ZIP File**
 
----
+For the Generate a Portal using the Async API file, the response states that a ZIP file is returned, but it doesn’t explain what portal artifacts are included.
+Recommendation: List the expected contents, such as:
+The ZIP file contains:
 
-### **4. Define Polling Intervals for Async API**  
-The **"Generate a Portal using the Async API"** page instructs users to **poll the status endpoint periodically** but doesn’t suggest a recommended polling interval.  
-
-**Suggested Fix:**  
-Add a best practice recommendation:  
-> "We recommend polling the status endpoint every **5-10 seconds** to balance efficiency and server load."  
-
-This small addition helps users optimize their requests.  
-
----
-
-### **5. No Troubleshooting Section**  
-If an API request fails, users have to diagnose issues themselves since there is **no dedicated troubleshooting guide.**  
-
-**Suggested Fix:**  
-Add a **Troubleshooting** section with common errors and solutions, such as:  
-- **401 Unauthorized:** Ensure that the API key is correctly added to GitHub Secrets.  
-- **504 Gateway Timeout:** The API specification is too large—use the **Async API** instead.  
-- **Deployment Failed:** Verify that the Netlify authentication token is correct.  
-
-This would significantly cut down on user frustration.  
-
----
-
-### **6. The Migration Guide Needs More Details on Build Input**  
-The **"Migrating from Existing Portal to the Docs as Code Workflow"** page explains how to generate a **Build Input** but doesn’t detail **what’s inside the file.** Users might not fully understand what’s being transferred.  
-
-**Suggested Fix:**  
-Include a **sample structure of the build input file**, such as:  
-```json
-{
-  "apiSpecs": ["openapi.json"],
-  "customContent": {
-    "guides": ["docs/guide1.md", "docs/guide2.md"],
-    "tableOfContents": "docs/toc.yml"
-  },
-  "staticAssets": ["images/logo.png"]
-}
-```  
-This provides users with better visibility into what’s being migrated.
-
----
-
-APIMatic’s Docs as Code documentation is well-organized and technically detailed, making it easy to follow. However, small refinements could **greatly improve the user experience.**  
-
-### **Key Improvements That Would Have a Big Impact:**  
-- Add missing API request examples (especially for Sync API requests)
-- Clarify how to obtain API authentication keys  
-- Expand hosting instructions with step-by-step deployment options  
-- Specify recommended polling intervals for the Async API  
-- Include a dedicated troubleshooting section for common API and deployment issues  
-- Provide details on what’s included in a Build Input file during migration  
-
-These adjustments would make the documentation more **comprehensive, user-friendly, and accessible**, especially for developers integrating Docs as Code into their workflows. 
+index.html: The main API portal homepage
+docs/: API reference documentation
+sdk/: SDK files for supported languages
+static/: Any static assets like images and PDFs

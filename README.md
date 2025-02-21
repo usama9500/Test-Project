@@ -1,4 +1,4 @@
-# **README for APIMatic Docs as Code Documentation**  
+# **APIMatic Docs as Code Documentation**  
 
 This repository contains two key documents that provide an overview and a step-by-step guide for using APIMatic’s **Docs as Code** approach. These documents are intended for first-time users and teams looking to integrate API documentation workflows with Git, CI/CD pipelines, and automation tools.  
 

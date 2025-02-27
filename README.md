@@ -9,6 +9,8 @@ This repository contains two key documents that provide an overview and a step-b
 ### **1. Quick Start Guide (`quickstart.md`)**  
 The **Quick Start Guide** is designed for first-time users and provides a step-by-step approach to setting up and using **APIMatic Docs as Code**.  
 
+**Estimated time spent**: 2.5 hrs
+
 #### **What’s Covered:**  
 - Preparing the **Docs as Code** repository  
 - Generating an API portal using **Sync and Async APIs**  
@@ -21,6 +23,8 @@ The **Quick Start Guide** is designed for first-time users and provides a step-b
 ### **2. Documentation Analysis (`analysis.md`)**  
 The **Documentation Analysis** provides a detailed review of APIMatic’s existing **Docs as Code documentation**, highlighting strengths and areas for improvement.  
 
+**Estimated time spent**: 2 hrs
+
 #### **What’s Covered:**  
 - Strengths of the existing documentation (clear workflows, real-world examples, automation support)  
 - Areas for improvement, including missing API request examples, unclear hosting instructions, and lack of troubleshooting guidance  
@@ -28,4 +32,3 @@ The **Documentation Analysis** provides a detailed review of APIMatic’s existi
 - Suggested improvements for API key authentication, polling intervals, and migration details  
 
 
-For more details, refer to **APIMatic’s official documentation** or explore **the API reference** for advanced configuration options.
